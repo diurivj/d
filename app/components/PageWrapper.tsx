@@ -1,9 +1,25 @@
+import { classNames } from '~/utils/tailwind';
+import { Footer } from './Footer';
+import { Navbar } from './Navbar';
+
 type PageWrapperProps = {
   children: React.ReactNode | React.ReactNode[] | JSX.Element | JSX.Element[];
+  className?: string;
 };
 
-export function PageWrapper({ children }: PageWrapperProps) {
+export function PageWrapper({ children, className }: PageWrapperProps) {
   return (
-    <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>{children}</main>
+    <>
+      <Navbar />
+      <main
+        className={classNames(
+          'mx-auto max-w-7xl px-6 lg:px-8 mt-20',
+          className
+        )}
+      >
+        {children}
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { classNames } from '~/utils/tailwind';
-import { NavLink } from '@remix-run/react';
+import { Link, NavLink } from '@remix-run/react';
 import logo from '~/images/logo.png';
 
 const links = [
@@ -10,16 +10,16 @@ const links = [
     href: '/',
   },
   {
-    name: 'Home',
-    href: '/d',
+    name: 'About',
+    href: '/about',
   },
   {
-    name: 'Home',
-    href: '/e',
+    name: 'Contact',
+    href: '/contact',
   },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   function navbarClassnames(isActive: boolean, desktop: boolean) {
     if (desktop) {
       return classNames(
@@ -44,7 +44,7 @@ export default function Navbar() {
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <div className='flex h-16 justify-between'>
               <div className='flex'>
-                <div className='flex flex-shrink-0 items-center'>
+                <Link to='/' className='flex flex-shrink-0 items-center'>
                   <img
                     src={logo}
                     alt='diurivj'
@@ -55,7 +55,7 @@ export default function Navbar() {
                     alt='diurivj'
                     className='hidden h-6 w-auto lg:block'
                   />
-                </div>
+                </Link>
                 <div className='hidden sm:ml-6 sm:flex sm:space-x-8'>
                   {links.map((link) => (
                     <NavLink
@@ -71,7 +71,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className='-mr-2 flex items-center sm:hidden'>
+              <div className='flex items-center sm:hidden'>
                 {/* Mobile menu button */}
                 <Disclosure.Button
                   className={classNames(
@@ -92,7 +92,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className='sm:hidden'>
+          <Disclosure.Panel className='absolute bg-white right-0 left-0 shadow-md sm:hidden'>
             <div className='space-y-1 pt-2 pb-3'>
               {links.map((link) => (
                 <NavLink
