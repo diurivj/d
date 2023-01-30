@@ -39,12 +39,15 @@ export function Navbar() {
 
   return (
     <Disclosure as='nav' className='bg-white shadow'>
-      {({ open }) => (
+      {({ open, close }) => (
         <>
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <div className='flex h-16 justify-between'>
               <div className='flex'>
-                <Link to='/' className='flex flex-shrink-0 items-center'>
+                <Link
+                  to='/'
+                  className='flex flex-shrink-0 items-center focus:outline-none focus:ring-1 focus:ring-black'
+                >
                   <img
                     src={logo}
                     alt='diurivj'
@@ -98,6 +101,7 @@ export function Navbar() {
                 <NavLink
                   to={link.href}
                   key={link.href}
+                  onClick={() => close()}
                   className={({ isActive }) =>
                     navbarClassnames(isActive, false)
                   }
